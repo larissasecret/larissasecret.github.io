@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Álbum Premium</title>
+    <title>Conteúdo Especial</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
         * {
@@ -14,9 +14,10 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #0f172a 0%, #1a2847 100%);
+            background: linear-gradient(135deg, #0a0a0f 0%, #1a0a14 100%);
             min-height: 100vh;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
             padding: 20px;
@@ -32,7 +33,7 @@
         }
 
         .left-card {
-            background: linear-gradient(135deg, #1a2847 0%, #243555 100%);
+            background: linear-gradient(135deg, #1a0a14 0%, #2a0f1f 100%);
             border-radius: 32px;
             padding: 60px 40px;
             color: white;
@@ -48,7 +49,7 @@
             right: -50%;
             width: 500px;
             height: 500px;
-            background: radial-gradient(circle, rgba(255, 107, 107, 0.1) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(255, 45, 85, 0.1) 0%, transparent 70%);
             border-radius: 50%;
         }
 
@@ -59,7 +60,7 @@
             left: -50%;
             width: 500px;
             height: 500px;
-            background: radial-gradient(circle, rgba(255, 193, 7, 0.05) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(200, 30, 224, 0.05) 0%, transparent 70%);
             border-radius: 50%;
         }
 
@@ -81,21 +82,153 @@
         }
 
         @keyframes glow {
-            0%, 100% { filter: drop-shadow(0 0 20px rgba(255, 107, 107, 0.6)); }
-            50% { filter: drop-shadow(0 0 40px rgba(255, 193, 7, 0.8)); }
+            0%, 100% { filter: drop-shadow(0 0 20px rgba(255, 45, 85, 0.6)); }
+            50% { filter: drop-shadow(0 0 40px rgba(200, 30, 224, 0.8)); }
         }
 
         .logo-svg {
             width: 150px;
             height: 150px;
             animation: glow 2s ease-in-out infinite;
+            overflow: visible;
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { opacity: 0.7; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.12); }
+        }
+
+        .logo-pulse {
+            transform-origin: 100px 100px;
+            animation: pulseGlow 1.8s ease-in-out infinite;
+        }
+
+        @keyframes rotateRing {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .logo-ring {
+            transform-origin: 100px 100px;
+            animation: rotateRing 6s linear infinite;
+        }
+
+        @keyframes flicker {
+            0%, 100% { transform: scale(1) rotate(-2deg); }
+            25% { transform: scale(1.08) rotate(2deg); }
+            50% { transform: scale(0.96) rotate(-3deg); }
+            75% { transform: scale(1.05) rotate(1deg); }
+        }
+
+        .logo-flame {
+            transform-origin: 100px 100px;
+            animation: flicker 1.1s ease-in-out infinite;
+        }
+
+        @keyframes wobble {
+            0%, 100% { transform: rotate(-8deg); }
+            50% { transform: rotate(8deg); }
+        }
+
+        .logo-pepper {
+            transform-origin: 52px 145px;
+            animation: wobble 1.6s ease-in-out infinite;
+        }
+
+        @keyframes badgePulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .logo-badge {
+            transform-origin: 150px 55px;
+            animation: badgePulse 1.4s ease-in-out infinite;
+        }
+
+        .social-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+
+        .social-btn {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+            transition: transform 0.2s ease;
+        }
+
+        .social-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .social-btn-whatsapp {
+            background: linear-gradient(135deg, #25d366 0%, #20ba5a 100%);
+        }
+
+        .social-btn-instagram {
+            background: linear-gradient(135deg, #f58529 0%, #dd2a7b 50%, #8134af 100%);
+        }
+
+        .social-btn-tiktok {
+            background: linear-gradient(135deg, #000000 0%, #333333 100%);
+        }
+
+        .security-footer {
+            max-width: 1200px;
+            width: 100%;
+            margin: 24px auto 0;
+            padding: 18px 24px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+        }
+
+        .security-footer-inner {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 28px;
+            flex-wrap: wrap;
+        }
+
+        .security-seal {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.55);
+            font-weight: 600;
+        }
+
+        .security-seal-icon {
+            font-size: 16px;
+        }
+
+        @media (max-width: 768px) {
+            .security-footer {
+                padding: 16px;
+            }
+
+            .security-footer-inner {
+                gap: 16px;
+                justify-content: flex-start;
+            }
         }
 
         .subtitle {
             font-size: 12px;
             letter-spacing: 2px;
             text-transform: uppercase;
-            color: #ff6b6b;
+            color: #ff2d55;
             margin-bottom: 15px;
             font-weight: 600;
             text-align: center;
@@ -119,7 +252,7 @@
         }
 
         .plus-18 {
-            background: linear-gradient(135deg, #ff6b6b 0%, #ff8787 100%);
+            background: linear-gradient(135deg, #ff2d55 0%, #ff4d8f 100%);
             color: white;
             padding: 6px 14px;
             border-radius: 20px;
@@ -138,8 +271,8 @@
         }
 
         .price-box {
-            background: rgba(255, 107, 107, 0.15);
-            border: 1px solid rgba(255, 107, 107, 0.3);
+            background: rgba(255, 45, 85, 0.15);
+            border: 1px solid rgba(255, 45, 85, 0.3);
             border-radius: 20px;
             padding: 30px;
             margin-bottom: 40px;
@@ -198,7 +331,7 @@
         .form-title {
             font-size: 32px;
             font-weight: 800;
-            color: #0f172a;
+            color: #0a0a0f;
             margin-bottom: 8px;
         }
 
@@ -216,7 +349,7 @@
             display: block;
             font-size: 14px;
             font-weight: 600;
-            color: #0f172a;
+            color: #0a0a0f;
             margin-bottom: 10px;
         }
 
@@ -237,9 +370,9 @@
 
         .form-input:focus {
             outline: none;
-            border-color: #ff6b6b;
+            border-color: #ff2d55;
             background: white;
-            box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.1);
+            box-shadow: 0 0 0 3px rgba(255, 45, 85, 0.1);
         }
 
         .product-summary {
@@ -256,19 +389,19 @@
         .product-name {
             font-size: 16px;
             font-weight: 600;
-            color: #0f172a;
+            color: #0a0a0f;
         }
 
         .product-price {
             font-size: 18px;
             font-weight: 800;
-            color: #ff6b6b;
+            color: #ff2d55;
         }
 
         .submit-btn {
             width: 100%;
             padding: 16px;
-            background: linear-gradient(135deg, #ff6b6b 0%, #ff8787 100%);
+            background: linear-gradient(135deg, #ff2d55 0%, #ff4d8f 100%);
             color: white;
             border: none;
             border-radius: 12px;
@@ -281,9 +414,166 @@
             margin-top: 15px;
         }
 
+        .stars-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .stars {
+            font-size: 14px;
+            letter-spacing: 2px;
+        }
+
+        .stars-count {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .urgency-banner {
+            background: linear-gradient(135deg, #ff2d55 0%, #ff4757 100%);
+            color: white;
+            text-align: center;
+            padding: 10px 16px;
+            border-radius: 12px;
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .urgency-banner span#countdown {
+            font-family: monospace;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 2px 8px;
+            border-radius: 6px;
+            letter-spacing: 1px;
+        }
+
+        .trust-badges {
+            display: flex;
+            justify-content: center;
+            gap: 18px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .trust-badge {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.65);
+        }
+
+        .social-proof {
+            margin-top: 30px;
+            padding-top: 25px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .social-proof-title {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: rgba(255, 255, 255, 0.5);
+            margin-bottom: 14px;
+            text-align: center;
+        }
+
+        .testimonial {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 14px;
+            padding: 14px 16px;
+            margin-bottom: 10px;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.5;
+        }
+
+        .testimonial-stars {
+            display: block;
+            font-size: 11px;
+            letter-spacing: 1px;
+            margin-bottom: 4px;
+        }
+
+        .testimonial-author {
+            display: block;
+            margin-top: 6px;
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.45);
+        }
+
+        .payment-badges {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 14px 0;
+            flex-wrap: wrap;
+        }
+
+        .payment-badge {
+            background: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 6px 12px;
+            font-size: 11px;
+            font-weight: 700;
+            color: #374151;
+        }
+
+        .guarantee-box {
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            border-radius: 12px;
+            padding: 12px 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 12px;
+            color: #166534;
+            margin-top: 14px;
+        }
+
+        .guarantee-box-top {
+            background: rgba(74, 222, 128, 0.12);
+            border: 1px solid rgba(74, 222, 128, 0.35);
+            color: #86efac;
+            margin: 16px auto 20px;
+            max-width: fit-content;
+            text-align: center;
+        }
+
+        .age-confirm {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            font-size: 12px;
+            color: #6b7280;
+            margin: 16px 0;
+        }
+
+        .age-confirm input {
+            margin-top: 2px;
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
         .submit-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.3);
+            box-shadow: 0 10px 30px rgba(255, 45, 85, 0.3);
         }
 
         .security-text {
@@ -351,7 +641,7 @@
         .modal-title {
             font-size: 28px;
             font-weight: 800;
-            color: #0f172a;
+            color: #0a0a0f;
             margin-bottom: 15px;
         }
 
@@ -402,7 +692,7 @@
             width: 34px;
             height: 34px;
             border: 3px solid #e5e7eb;
-            border-top-color: #ff6b6b;
+            border-top-color: #ff2d55;
             border-radius: 50%;
             animation: spin 0.8s linear infinite;
         }
@@ -449,7 +739,7 @@
             padding: 12px 18px;
             border: none;
             border-radius: 12px;
-            background: #0f172a;
+            background: #0a0a0f;
             color: white;
             font-weight: 700;
             font-size: 13px;
@@ -475,6 +765,96 @@
             padding: 14px;
             font-size: 14px;
             text-align: center;
+        }
+
+        .plans-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+        .plan-card {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .plan-card input {
+            position: absolute;
+            opacity: 0;
+        }
+
+        .plan-card-inner {
+            border: 2px solid #e5e7eb;
+            border-radius: 14px;
+            padding: 14px 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 4px;
+            transition: all 0.2s ease;
+            background: #f9fafb;
+            position: relative;
+        }
+
+        .plan-card input:checked + .plan-card-inner {
+            border-color: #ff2d55;
+            background: rgba(255, 45, 85, 0.06);
+            box-shadow: 0 0 0 1px #ff2d55;
+        }
+
+        .plan-name {
+            font-size: 13px;
+            font-weight: 700;
+            color: #0a0a0f;
+            margin-top: 6px;
+        }
+
+        .plan-old-price {
+            font-size: 11px;
+            color: #9ca3af;
+            text-decoration: line-through;
+        }
+
+        .plan-price {
+            font-size: 15px;
+            font-weight: 800;
+            color: #ff2d55;
+        }
+
+        .plan-price small {
+            font-size: 10px;
+            font-weight: 600;
+            color: #9ca3af;
+        }
+
+        .plan-save {
+            font-size: 10px;
+            font-weight: 700;
+            color: #16a34a;
+            background: #f0fdf4;
+            padding: 2px 6px;
+            border-radius: 6px;
+        }
+
+        .plan-badge {
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #ff2d55;
+            color: white;
+            font-size: 9px;
+            font-weight: 700;
+            padding: 3px 8px;
+            border-radius: 20px;
+            white-space: nowrap;
+        }
+
+        @media (max-width: 480px) {
+            .plans-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
         .btn-voltar {
@@ -521,73 +901,146 @@
                 height: 120px;
             }
         }
+
+        /* ---- Rodapé branco com redes sociais (estático, não fixo) ---- */
+        .social-bar-footer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin: 24px auto 0;
+            padding: 20px 16px;
+            max-width: 1200px;
+            width: 100%;
+            background: transparent;
+        }
+
+        .social-bar-footer .social-btn-whatsapp,
+        .social-bar-footer .social-btn-instagram,
+        .social-bar-footer .social-btn-tiktok {
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .social-bar-footer {
+                gap: 8px;
+                padding: 16px 12px;
+            }
+
+            .social-bar-footer .social-btn {
+                flex: 1;
+                justify-content: center;
+                padding: 10px 8px;
+                font-size: 12px;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="left-card">
             <div class="left-content">
+                <div class="urgency-banner">
+                    ⏳ Oferta expira em <span id="countdown">10:00</span>
+                </div>
+
                 <div class="logo-container">
-                    <svg class="logo-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg class="logo-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
                         <defs>
-                            <linearGradient id="mainGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" style="stop-color:#ff6b6b;stop-opacity:1" />
-                                <stop offset="50%" style="stop-color:#ff8787;stop-opacity:1" />
-                                <stop offset="100%" style="stop-color:#ffc107;stop-opacity:1" />
-                            </linearGradient>
                             <radialGradient id="centerGlow" cx="50%" cy="50%" r="50%">
-                                <stop offset="0%" style="stop-color:#ffff00;stop-opacity:0.8" />
-                                <stop offset="100%" style="stop-color:#ffc107;stop-opacity:0" />
+                                <stop offset="0%" style="stop-color:#ffcc00;stop-opacity:0.9" />
+                                <stop offset="60%" style="stop-color:#ff6b00;stop-opacity:0.35" />
+                                <stop offset="100%" style="stop-color:#ff6b00;stop-opacity:0" />
                             </radialGradient>
+                            <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#ffcc00" />
+                                <stop offset="50%" style="stop-color:#ff6b00" />
+                                <stop offset="100%" style="stop-color:#ff2d55" />
+                            </linearGradient>
                         </defs>
 
-                        <circle cx="100" cy="100" r="95" fill="none" stroke="url(#mainGrad)" stroke-width="4" opacity="0.9"/>
-                        <circle cx="100" cy="100" r="105" fill="none" stroke="url(#mainGrad)" stroke-width="2" opacity="0.4" stroke-dasharray="8,4"/>
-                        <circle cx="100" cy="100" r="85" fill="none" stroke="#ffc107" stroke-width="1.5" opacity="0.6"/>
+                        <!-- brilho de fundo pulsante -->
+                        <circle cx="100" cy="100" r="80" fill="url(#centerGlow)" class="logo-pulse"/>
 
-                        <rect x="45" y="45" width="110" height="110" rx="18" fill="none" stroke="url(#mainGrad)" stroke-width="3.5"/>
-                        <rect x="43" y="43" width="114" height="114" rx="20" fill="none" stroke="#ffff00" stroke-width="1" opacity="0.4"/>
+                        <!-- anel externo girando -->
+                        <circle cx="100" cy="100" r="88" fill="none" stroke="url(#ringGrad)" stroke-width="3" stroke-dasharray="10,8" class="logo-ring"/>
+                        <circle cx="100" cy="100" r="70" fill="none" stroke="url(#ringGrad)" stroke-width="1.5" opacity="0.5"/>
 
-                        <polygon points="100,75 125,100 100,125" fill="url(#mainGrad)" opacity="0.95"/>
-                        <polygon points="100,75 125,100 100,125" fill="none" stroke="#ffffff" stroke-width="1.5" opacity="0.7"/>
+                        <!-- chama central -->
+                        <text x="100" y="122" font-size="72" text-anchor="middle" class="logo-flame">🔥</text>
 
-                        <circle cx="100" cy="100" r="55" fill="url(#centerGlow)"/>
+                        <!-- pimenta -->
+                        <text x="52" y="150" font-size="34" text-anchor="middle" class="logo-pepper">🌶️</text>
 
-                        <circle cx="65" cy="65" r="8" fill="#ffff00" opacity="0.6"/>
-                        <circle cx="135" cy="65" r="8" fill="#ff6b6b" opacity="0.7"/>
-                        <circle cx="65" cy="135" r="8" fill="#ffc107" opacity="0.6"/>
-                        <circle cx="135" cy="135" r="8" fill="#ff8787" opacity="0.7"/>
-
-                        <circle cx="80" cy="80" r="4" fill="#ffffff" opacity="0.9"/>
-                        <circle cx="120" cy="120" r="3" fill="#ffffff" opacity="0.7"/>
-
-                        <line x1="100" y1="30" x2="100" y2="50" stroke="url(#mainGrad)" stroke-width="2" opacity="0.6"/>
-                        <line x1="100" y1="150" x2="100" y2="170" stroke="url(#mainGrad)" stroke-width="2" opacity="0.6"/>
-                        <line x1="30" y1="100" x2="50" y2="100" stroke="url(#mainGrad)" stroke-width="2" opacity="0.6"/>
-                        <line x1="150" y1="100" x2="170" y2="100" stroke="url(#mainGrad)" stroke-width="2" opacity="0.6"/>
+                        <!-- badge +18 -->
+                        <g class="logo-badge">
+                            <circle cx="150" cy="55" r="26" fill="#ff2d55" stroke="#ffffff" stroke-width="3"/>
+                            <text x="150" y="62" font-size="20" font-weight="800" text-anchor="middle" fill="#ffffff" font-family="Inter, sans-serif">+18</text>
+                        </g>
                     </svg>
                 </div>
 
-                <div class="subtitle">Conteúdo exclusivo</div>
-                <h1 class="title">Álbum Premium</h1>
-                
+                <div class="subtitle">🔥 Só até hoje à noite</div>
+                <h1 class="title">Conteúdo Especial</h1>
+
                 <div class="rating">
-                    <span style="color: #ffc107; font-size: 14px;">📸 Foto Exclusiva 📸</span>
+                    <span style="color: #c81ee0; font-size: 14px;">📸 Foto Exclusiva 📸</span>
                     <span class="plus-18">+18</span>
                 </div>
 
-                <p class="description">Acesso completo a todos os recursos premium com qualidade máxima e conteúdo exclusivo para maiores de idade.</p>
+                <div class="stars-row">
+                    <span class="stars">⭐⭐⭐⭐⭐</span>
+                    <span class="stars-count">4.9 • +2.300 acessos liberados</span>
+                </div>
+
+                <p class="description">Você já viu o teaser. Agora é a hora de ver <strong>tudo</strong>, sem cortes, na melhor qualidade — acesso liberado na hora, direto no seu celular.</p>
 
                 <div class="price-box">
-                    <div class="price-label">Total a pagar</div>
-                    <div class="price-amount">R$24,99</div>
-                    <div class="price-detail">Álbum Premium • 1 unidade</div>
+                    <div class="price-label">Planos a partir de</div>
+                    <div class="price-amount">R$19,90</div>
+                    <div class="price-detail">Conteúdo Especial • Escolha seu plano ao lado</div>
                 </div>
 
                 <div class="benefits">
                     <div class="benefit">Conteúdo exclusivo de qualidade</div>
                     <div class="benefit">Acesso ilimitado 24/7</div>
                     <div class="benefit">Suporte prioritário</div>
+                </div>
+
+                <div class="trust-badges">
+                    <span class="trust-badge">🔒 Pagamento 100% seguro</span>
+                    <span class="trust-badge">🕶️ Cobrança discreta na fatura</span>
+                    <span class="trust-badge">⚡ Acesso imediato</span>
+                </div>
+
+                <div class="social-proof">
+                    <div class="social-proof-title">O que dizem os assinantes</div>
+                    <div class="testimonial">
+                        <span class="testimonial-stars">⭐⭐⭐⭐⭐</span>
+                        "Chegou na hora, qualidade impecável. Já é a segunda vez que compro."
+                        <span class="testimonial-author">— Cliente verificado</span>
+                    </div>
+                    <div class="testimonial">
+                        <span class="testimonial-stars">⭐⭐⭐⭐⭐</span>
+                        "Processo rápido, ninguém fica sabendo o que eu comprei na fatura. Recomendo."
+                        <span class="testimonial-author">— Cliente verificado</span>
+                    </div>
+                    <div class="testimonial">
+                        <span class="testimonial-stars">⭐⭐⭐⭐⭐</span>
+                        "Comprei com receio, mas foi tranquilo e o conteúdo é ótimo. Voltarei a comprar."
+                        <span class="testimonial-author">— Cliente verificado</span>
+                    </div>
+                    <div class="testimonial">
+                        <span class="testimonial-stars">⭐⭐⭐⭐⭐</span>
+                        "Suporte respondeu rápido quando tive uma dúvida. Confiável."
+                        <span class="testimonial-author">— Cliente verificado</span>
+                    </div>
+                    <div class="testimonial">
+                        <span class="testimonial-stars">⭐⭐⭐⭐⭐</span>
+                        "Já assinei o plano vitalício, sem arrependimentos. Recomendo demais."
+                        <span class="testimonial-author">— Cliente verificado</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -613,17 +1066,59 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="form-label">E-mail</label>
-                    <input type="email" class="form-input" id="userEmail" placeholder="seuemail@exemplo.com" required>
+                    <label class="form-label">Escolha seu plano</label>
+                    <div class="plans-grid">
+                        <label class="plan-card">
+                            <input type="radio" name="plan" value="mensal" data-price="19.99" data-label="Plano Mensal">
+                            <div class="plan-card-inner">
+                                <span class="plan-name">Mensal</span>
+                                <span class="plan-old-price">R$56,90</span>
+                                <span class="plan-price">R$19,99<small>/mês</small></span>
+                            </div>
+                        </label>
+                        <label class="plan-card">
+                            <input type="radio" name="plan" value="vitalicio" data-price="34.99" data-label="Plano Vitalício">
+                            <div class="plan-card-inner">
+                                <span class="plan-name">Vitalício</span>
+                                <span class="plan-old-price">R$68,90</span>
+                                <span class="plan-price">R$34,99<small>único</small></span>
+                            </div>
+                        </label>
+                        <label class="plan-card popular">
+                            <input type="radio" name="plan" value="promo_hoje" data-price="12.99" data-label="Promoção Hoje" checked>
+                            <div class="plan-card-inner">
+                                <span class="plan-badge">🔥 Só hoje</span>
+                                <span class="plan-name">Promoção Hoje</span>
+                                <span class="plan-old-price">R$42,90</span>
+                                <span class="plan-price">R$12,99<small>único</small></span>
+                                <span class="plan-save">Economize 69%</span>
+                            </div>
+                        </label>
+                    </div>
                 </div>
 
                 <div class="product-summary">
-                    <span class="product-name">Álbum Premium +18</span>
-                    <span class="product-price">R$ 24,99</span>
+                    <span class="product-name" id="selectedPlanName">Conteúdo Especial +18 • Promoção Hoje</span>
+                    <span class="product-price" id="selectedPlanPrice">R$ 12,99</span>
                 </div>
 
-                <button type="submit" class="submit-btn" id="submitBtn">🔐 Gerar PIX • R$ 24,99</button>
+                <div class="payment-badges">
+                    <span class="payment-badge">PIX</span>
+                    <span class="payment-badge">🔒 SSL</span>
+                    <span class="payment-badge">Ambiente verificado</span>
+                </div>
+
+                <label class="age-confirm">
+                    <input type="checkbox" id="ageConfirm" required>
+                    Confirmo que sou maior de 18 anos e estou ciente de que o conteúdo é de natureza adulta.
+                </label>
+
+                <button type="submit" class="submit-btn" id="submitBtn">🔐 Gerar PIX • <span id="submitBtnPrice">R$ 12,99</span></button>
                 <p class="security-text">Ambiente seguro • Dados criptografados</p>
+
+                <div class="guarantee-box">
+                    🛡️ <span>Não recebeu o acesso? Suporte responde em minutos e resolve.</span>
+                </div>
             </form>
 
             <div id="pixBox" class="pix-box hidden">
@@ -648,13 +1143,54 @@
         </div>
     </div>
 
+    <!-- Redes sociais - rodapé branco, estático (não fixo) -->
+    <div class="social-bar-footer">
+        <a href="https://wa.me/558585214375" target="_blank" rel="noopener" class="social-btn social-btn-whatsapp" title="Suporte no WhatsApp">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12.04 2c-5.52 0-10 4.48-10 10 0 1.77.46 3.45 1.26 4.9L2 22l5.25-1.38a9.96 9.96 0 0 0 4.79 1.22h.01c5.52 0 10-4.48 10-10s-4.48-9.84-10.01-9.84zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.18 8.18 0 0 1-1.26-4.39c0-4.52 3.68-8.2 8.2-8.2 2.19 0 4.25.85 5.8 2.4a8.15 8.15 0 0 1 2.4 5.8c0 4.52-3.68 8.25-8.15 8.25zm4.5-6.13c-.25-.12-1.47-.72-1.7-.8-.23-.08-.39-.12-.56.13-.17.25-.64.8-.78.96-.14.17-.29.19-.53.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.24-1.47-1.39-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.14.16-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.35-.77-1.85-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.23.25-.86.84-.86 2.04 0 1.2.88 2.37 1 2.53.12.17 1.73 2.64 4.2 3.7.59.25 1.05.4 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.08.15-1.18-.06-.1-.23-.16-.48-.28z"/></svg>
+            WhatsApp
+        </a>
+        <a href="https://www.instagram.com/larissa_dias0.2?utm_source=qr" target="_blank" rel="noopener" class="social-btn social-btn-instagram" title="Instagram">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.16-.42-.36-1.06-.41-2.23-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41 1.27-.06 1.65-.07 4.85-.07zM12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63c-.79.31-1.46.72-2.13 1.38C1.35 2.68.94 3.35.63 4.14.33 4.9.14 5.78.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.31.79.72 1.46 1.38 2.13.67.66 1.34 1.07 2.13 1.38.76.3 1.64.5 2.91.56 1.28.06 1.69.07 4.95.07s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56.79-.31 1.46-.72 2.13-1.38.66-.67 1.07-1.34 1.38-2.13.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91-.31-.79-.72-1.46-1.38-2.13C21.32 1.35 20.65.94 19.86.63c-.76-.3-1.64-.5-2.91-.56C15.67.01 15.26 0 12 0zm0 5.84A6.16 6.16 0 1 0 18.16 12 6.16 6.16 0 0 0 12 5.84zm0 10.16A4 4 0 1 1 16 12a4 4 0 0 1-4 4zm6.4-10.4a1.44 1.44 0 1 1-1.44-1.44 1.44 1.44 0 0 1 1.44 1.44z"/></svg>
+            Instagram
+        </a>
+        <a href="https://www.tiktok.com/@lary_dias02" target="_blank" rel="noopener" class="social-btn social-btn-tiktok" title="TikTok">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M16.6 5.82c-1-1-1.53-2.23-1.6-3.82h-3.16v13.55c0 1.63-1.32 2.95-2.95 2.95a2.95 2.95 0 0 1 0-5.9c.32 0 .63.05.92.14V9.55a6.15 6.15 0 0 0-.92-.07 6.15 6.15 0 1 0 6.15 6.15V8.4a9.4 9.4 0 0 0 4.9 1.37V6.6a5.9 5.9 0 0 1-3.34-.78z"/></svg>
+            TikTok
+        </a>
+    </div>
+
+    <div class="security-footer">
+        <div class="security-footer-inner">
+            <div class="security-seal">
+                <span class="security-seal-icon">🔒</span>
+                <span>Conexão criptografada SSL</span>
+            </div>
+            <div class="security-seal">
+                <span class="security-seal-icon">🏦</span>
+                <span>Pix regulado pelo Banco Central</span>
+            </div>
+            <div class="security-seal">
+                <span class="security-seal-icon">🛡️</span>
+                <span>Dados protegidos (LGPD)</span>
+            </div>
+            <div class="security-seal">
+                <span class="security-seal-icon">✅</span>
+                <span>Ambiente de pagamento verificado</span>
+            </div>
+            <div class="security-seal">
+                <span class="security-seal-icon">🙈</span>
+                <span>Cobrança 100% discreta</span>
+            </div>
+        </div>
+    </div>
+
     <!-- Modal de Sucesso -->
     <div id="successModal" class="modal">
         <div class="modal-content">
             <div class="success-icon">✅</div>
             <h2 class="modal-title">Pagamento confirmado!</h2>
-            <p class="modal-text">Seu acesso foi liberado. Clique no botão abaixo para continuar.</p>
-            <a href="#" class="btn-whatsapp" id="btnAcessar">✅ Acessar conteúdo</a>
+            <p class="modal-text">Pagamento aprovado! Você será redirecionado para o WhatsApp em instantes para receber seu acesso.</p>
+            <a href="#" class="btn-whatsapp" id="btnAcessar">✅ Ir para o WhatsApp agora</a>
         </div>
     </div>
 
@@ -673,6 +1209,54 @@
         // que o backend.
         const BACKEND_URL = "https://larissasecret-github-io.onrender.com";
 
+        // ---- Contador de urgência (reinicia a cada 10 min pra sempre mostrar prazo) ----
+        const countdownEl = document.getElementById('countdown');
+        function getCountdownTarget() {
+            const stored = sessionStorage.getItem('pixCountdownTarget');
+            if (stored && Number(stored) > Date.now()) return Number(stored);
+            const target = Date.now() + 10 * 60 * 1000;
+            sessionStorage.setItem('pixCountdownTarget', String(target));
+            return target;
+        }
+        let countdownTarget = getCountdownTarget();
+        function updateCountdown() {
+            const diff = Math.max(0, countdownTarget - Date.now());
+            const m = Math.floor(diff / 60000);
+            const s = Math.floor((diff % 60000) / 1000);
+            countdownEl.textContent = `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+            if (diff <= 0) {
+                countdownTarget = Date.now() + 10 * 60 * 1000;
+                sessionStorage.setItem('pixCountdownTarget', String(countdownTarget));
+            }
+        }
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+
+        // ---- Trava o botão até confirmar maioridade ----
+        const ageConfirm = document.getElementById('ageConfirm');
+
+        // ---- Atualiza o resumo/preço/botão quando o plano é trocado ----
+        const planInputs = document.querySelectorAll('input[name="plan"]');
+        const selectedPlanName = document.getElementById('selectedPlanName');
+        const selectedPlanPrice = document.getElementById('selectedPlanPrice');
+        const submitBtnPrice = document.getElementById('submitBtnPrice');
+
+        function formatBRL(value) {
+            return value.toFixed(2).replace('.', ',');
+        }
+
+        function updatePlanSummary() {
+            const checked = document.querySelector('input[name="plan"]:checked');
+            if (!checked) return;
+            const price = parseFloat(checked.dataset.price);
+            const label = checked.dataset.label;
+            selectedPlanName.textContent = `Conteúdo Especial +18 • ${label.replace('Plano ', '')}`;
+            selectedPlanPrice.textContent = `R$ ${formatBRL(price)}`;
+            submitBtnPrice.textContent = `R$ ${formatBRL(price)}`;
+        }
+
+        planInputs.forEach((input) => input.addEventListener('change', updatePlanSummary));
+        updatePlanSummary();
         const form = document.getElementById('purchaseForm');
         const submitBtn = document.getElementById('submitBtn');
         const pixBox = document.getElementById('pixBox');
@@ -685,6 +1269,7 @@
         const btnCopyPix = document.getElementById('btnCopyPix');
         const btnVoltar = document.getElementById('btnVoltar');
         const successModal = document.getElementById('successModal');
+        const btnAcessar = document.getElementById('btnAcessar');
 
         let pollTimer = null;
 
@@ -721,6 +1306,17 @@
             }
         });
 
+        const WHATSAPP_NUMBER = "558585214375";
+
+        function buildWhatsappLink() {
+            const info = purchaseInfo || {};
+            const message =
+                `Olá! Acabei de pagar o *${info.planLabel || 'Conteúdo Especial'}* ` +
+                `(${info.planPrice ? 'R$ ' + info.planPrice : ''}) e quero receber meu acesso. ` +
+                `Nome: ${info.name || ''}`;
+            return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+        }
+
         async function pollStatus(chargeId) {
             pollTimer = setInterval(async () => {
                 try {
@@ -732,6 +1328,15 @@
                         clearInterval(pollTimer);
                         pixBox.classList.add('hidden');
                         successModal.classList.add('show');
+
+                        const whatsappLink = buildWhatsappLink();
+                        btnAcessar.href = whatsappLink;
+
+                        // Redireciona automaticamente pro WhatsApp após
+                        // 2 segundos (dá tempo do cliente ver a confirmação).
+                        setTimeout(() => {
+                            window.location.href = whatsappLink;
+                        }, 2000);
                     } else if (data.status === 'expired' || data.status === 'failed') {
                         showError('O código PIX expirou ou o pagamento falhou. Gere um novo código.');
                     } else {
@@ -743,15 +1348,29 @@
             }, 5000);
         }
 
+        let purchaseInfo = null;
+
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
 
             const name = document.getElementById('userName').value.trim();
             const phone = document.getElementById('userPhone').value.trim();
             const cpf = document.getElementById('userCpf').value.trim();
-            const email = document.getElementById('userEmail').value.trim();
+            const planInput = document.querySelector('input[name="plan"]:checked');
 
-            if (!name || !phone || !cpf || !email) return;
+            if (!name || !phone || !cpf) return;
+
+            if (!ageConfirm.checked) {
+                ageConfirm.parentElement.style.color = '#dc2626';
+                ageConfirm.focus();
+                return;
+            }
+
+            purchaseInfo = {
+                name,
+                planLabel: planInput.dataset.label,
+                planPrice: formatBRL(parseFloat(planInput.dataset.price))
+            };
 
             submitBtn.disabled = true;
             form.classList.add('hidden');
@@ -765,7 +1384,7 @@
                 const res = await fetch(`${BACKEND_URL}/api/pix/gerar`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ name, phone, cpf, email })
+                    body: JSON.stringify({ name, phone, cpf, plan: planInput.value })
                 });
 
                 if (!res.ok) {
