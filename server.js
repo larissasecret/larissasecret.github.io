@@ -29,9 +29,22 @@ app.use(express.json());
 const SYNCPAY_BASE_URL = process.env.SYNCPAY_BASE_URL || 'https://api.syncpayments.com.br';
 const SYNCPAY_API_PUBLIC = process.env.SYNCPAY_API_PUBLIC;
 const SYNCPAY_API_PRIVATE = process.env.SYNCPAY_API_PRIVATE;
-const PRODUCT_PRICE = Number(process.env.PRODUCT_PRICE || 24.99);
-const PRODUCT_NAME = process.env.PRODUCT_NAME || 'Album Premium';
+const PRODUCT_NAME = process.env.PRODUCT_NAME || 'Conteudo Especial';
 const PORT = process.env.PORT || 3000;
+
+// ------------------------------------------------------------
+// Planos de assinatura. O preço é definido AQUI, no servidor —
+// nunca confie em um valor de preço enviado pelo navegador,
+// porque ele pode ser alterado por quem estiver comprando
+// (ex: via DevTools). O front-end só manda o "id" do plano
+// escolhido (mensal/trimestral/anual), e o servidor consulta
+// o preço real aqui.
+// ------------------------------------------------------------
+const PLANS = {
+  mensal: { label: 'Plano Mensal', price: 19.99 },
+  vitalicio: { label: 'Plano Vitalício', price: 34.99 },
+  promo_hoje: { label: 'Promoção Hoje', price: 12.99 }
+};
 
 if (!SYNCPAY_API_PUBLIC || !SYNCPAY_API_PRIVATE) {
   console.error('ERRO: defina SYNCPAY_API_PUBLIC e SYNCPAY_API_PRIVATE (variaveis de ambiente)');
@@ -76,11 +89,24 @@ async function getAuthToken() {
 
 app.post('/api/pix/gerar', async (req, res) => {
   try {
-    const { name, phone, cpf, email } = req.body || {};
+    const { name, phone, cpf, plan } = req.body || {};
 
-    if (!name || !phone || !cpf || !email) {
-      return res.status(400).json({ message: 'Nome, CPF, e-mail e celular sao obrigatorios.' });
+    if (!name || !phone || !cpf) {
+      return res.status(400).json({ message: 'Nome, CPF e celular sao obrigatorios.' });
     }
+
+    const selectedPlan = PLANS[plan];
+    if (!selectedPlan) {
+      return res.status(400).json({ message: 'Plano invalido.' });
+    }
+
+    const cpfDigits = cpf.replace(/\D/g, '');
+
+    // A SyncPay exige um e-mail no cadastro, mas nao coletamos esse
+    // dado do cliente no formulario. Geramos um e-mail tecnico
+    // (nao é usado pra contato real, so preenche o campo obrigatorio
+    // da API).
+    const generatedEmail = `cliente-${cpfDigits}@checkout.larissasecret.com`;
 
     const token = await getAuthToken();
 
@@ -92,12 +118,12 @@ app.post('/api/pix/gerar', async (req, res) => {
         'Authorization': `Bearer ${token}`
       },
       body: JSON.stringify({
-        amount: PRODUCT_PRICE,
-        description: PRODUCT_NAME,
+        amount: selectedPlan.price,
+        description: `${PRODUCT_NAME} - ${selectedPlan.label}`,
         client: {
           name,
-          cpf: cpf.replace(/\D/g, ''),
-          email,
+          cpf: cpfDigits,
+          email: generatedEmail,
           phone: phone.replace(/\D/g, '')
         }
       })
