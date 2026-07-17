@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
@@ -607,6 +607,16 @@
                     <input type="tel" class="form-input" id="userPhone" placeholder="(11) 99999-9999" required>
                 </div>
 
+                <div class="form-group">
+                    <label class="form-label">CPF</label>
+                    <input type="text" class="form-input" id="userCpf" placeholder="000.000.000-00" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">E-mail</label>
+                    <input type="email" class="form-input" id="userEmail" placeholder="seuemail@exemplo.com" required>
+                </div>
+
                 <div class="product-summary">
                     <span class="product-name">Álbum Premium +18</span>
                     <span class="product-price">R$ 24,99</span>
@@ -658,7 +668,7 @@
 
         // Endereço do backend. Enquanto estiver testando local
         // (abrindo o index.html direto do disco), precisa ser a URL
-        // completa — ex: "https://larissasecret-github-io.onrender.com". Só pode ficar vazio
+        // completa — ex: "http://localhost:3000". Só pode ficar vazio
         // ("") se você publicar o index.html no MESMO domínio/servidor
         // que o backend.
         const BACKEND_URL = "https://larissasecret-github-io.onrender.com";
@@ -738,8 +748,10 @@
 
             const name = document.getElementById('userName').value.trim();
             const phone = document.getElementById('userPhone').value.trim();
+            const cpf = document.getElementById('userCpf').value.trim();
+            const email = document.getElementById('userEmail').value.trim();
 
-            if (!name || !phone) return;
+            if (!name || !phone || !cpf || !email) return;
 
             submitBtn.disabled = true;
             form.classList.add('hidden');
@@ -753,7 +765,7 @@
                 const res = await fetch(`${BACKEND_URL}/api/pix/gerar`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ name, phone })
+                    body: JSON.stringify({ name, phone, cpf, email })
                 });
 
                 if (!res.ok) {
